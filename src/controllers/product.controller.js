@@ -92,26 +92,25 @@ exports.delete = (req, res) => {
     });
 };
 
-// Find a single Tutorial with an id
-// exports.findOne = (req, res) => {
-//   const id = req.params.id;
+exports.findOne = (req, res) => {
+  const id = req.params.id;
 
-//   Product.findByPk(id)
-//     .then((data) => {
-//       if (data) {
-//         res.send(data);
-//       } else {
-//         res.status(404).send({
-//           message: `Cannot find Tutorial with id=${id}.`,
-//         });
-//       }
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message: "Error retrieving Tutorial with id=" + id,
-//       });
-//     });
-// };
+  Product.findByPk(id)
+    .then((data) => {
+      if (data) {
+        res.send(data);
+      } else {
+        res.status(404).send({
+          message: `Cannot find Tutorial with id=${id}.`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error retrieving Tutorial with id=" + id,
+      });
+    });
+};
 
 // // Delete all Tutorials from the database.
 // exports.deleteAll = (req, res) => {
