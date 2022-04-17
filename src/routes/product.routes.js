@@ -5,7 +5,8 @@ module.exports = (app) => {
 
   router.post("/", products.create);
   router.get("/", products.findAll);
-  // router.delete("/:id", products.delete);
+  router.delete("/:id", products.delete);
+  router.put("/:id", products.update);
 
   // // Retrieve all published Tutorials
   // router.get("/published", products.findAllPublished);
@@ -14,9 +15,6 @@ module.exports = (app) => {
   // router.get("/:id", products.findOne);
 
   // // Update a Tutorial with id
-  // router.put("/:id", products.update);
-
-  // // Delete a Tutorial with id
 
   // // Delete all Tutorials
   // router.delete("/", products.deleteAll);

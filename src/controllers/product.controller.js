@@ -2,9 +2,7 @@ const db = require("../models");
 const Product = db.products;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Tutorial
 exports.create = (req, res) => {
-  // Validate request
   if (!req.body.name || !req.body.description || !req.body.price) {
     res.status(400).send({
       message: "Preencha todos os dados!",
@@ -12,14 +10,12 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Tutorial
   const product = {
     name: req.body.name,
     description: req.body.description,
     price: req.body.price,
   };
 
-  // Save Tutorial in the database
   Product.create(product)
     .then((data) => {
       res.send(data);
@@ -32,7 +28,6 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
   const name = req.query.name;
   var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
@@ -45,6 +40,54 @@ exports.findAll = (req, res) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving tutorials.",
+      });
+    });
+};
+
+exports.update = (req, res) => {
+  const id = req.params.id;
+
+  Product.update(req.body, {
+    where: { id: id },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "O produto foi atualizado com sucesso",
+        });
+      } else {
+        res.send({
+          message: `O produto com o id = ${id} não foi atualizado com sucesso`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error updating Tutorial with id=" + id,
+      });
+    });
+};
+
+exports.delete = (req, res) => {
+  const id = req.params.id;
+
+  Product.destroy({
+    where: { id: id },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "O produto foi excluido com sucesso!",
+        });
+      } else {
+        res.send({
+          message: `O produto com o id=${id} não foi apagado com sucesso!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Could not delete Tutorial with id=" + id,
       });
     });
 };
@@ -66,56 +109,6 @@ exports.findAll = (req, res) => {
 //     .catch((err) => {
 //       res.status(500).send({
 //         message: "Error retrieving Tutorial with id=" + id,
-//       });
-//     });
-// };
-
-// // Update a Tutorial by the id in the request
-// exports.update = (req, res) => {
-//   const id = req.params.id;
-
-//   Product.update(req.body, {
-//     where: { id: id },
-//   })
-//     .then((num) => {
-//       if (num == 1) {
-//         res.send({
-//           message: "Tutorial was updated successfully.",
-//         });
-//       } else {
-//         res.send({
-//           message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`,
-//         });
-//       }
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message: "Error updating Tutorial with id=" + id,
-//       });
-//     });
-// };
-
-// // Delete a Tutorial with the specified id in the request
-// exports.delete = (req, res) => {
-//   const id = req.params.id;
-
-//   Product.destroy({
-//     where: { id: id },
-//   })
-//     .then((num) => {
-//       if (num == 1) {
-//         res.send({
-//           message: "Tutorial was deleted successfully!",
-//         });
-//       } else {
-//         res.send({
-//           message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`,
-//         });
-//       }
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message: "Could not delete Tutorial with id=" + id,
 //       });
 //     });
 // };
