@@ -1,13 +1,13 @@
 module.exports = (app) => {
-  const products = require("../controllers/product.controller.js");
+  const funcionarios = require("../controllers/funcionario.controller.js");
 
   var router = require("express").Router();
 
-  router.post("/", products.create);
-  router.get("/", products.findAll);
-  router.delete("/:id", products.delete);
-  router.put("/:id", products.update);
-  router.get("/:id", products.findOne);
+  router.post("/", funcionarios.create);
+  router.get("/", funcionarios.findAll);
+  // router.delete("/:id", products.delete);
+  // router.put("/:id", products.update);
+  // router.get("/:id", products.findOne);
 
   // // Retrieve all published Tutorials
   // router.get("/published", products.findAllPublished);
@@ -19,5 +19,5 @@ module.exports = (app) => {
   // // Delete all Tutorials
   // router.delete("/", products.deleteAll);
 
-  app.use("/api/products", router);
+  app.use("/api/funcionarios", router);
 };
