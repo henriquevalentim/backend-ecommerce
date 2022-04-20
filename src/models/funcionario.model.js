@@ -34,6 +34,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    cep: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     cidade: {
       type: Sequelize.STRING,
       allowNull: false,
