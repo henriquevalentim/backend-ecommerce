@@ -13,7 +13,8 @@ exports.create = (req, res) => {
     !req.body.numeroCasa ||
     !req.body.cidade ||
     !req.body.estado ||
-    !req.body.pais
+    !req.body.pais ||
+    !req.body.cep
   ) {
     res.status(400).send({
       message: "Preencha todos os dados!",
@@ -29,6 +30,7 @@ exports.create = (req, res) => {
     setor: req.body.setor,
     logradouro: req.body.logradouro,
     numeroCasa: req.body.numeroCasa,
+    cep: req.body.cep,
     cidade: req.body.cidade,
     estado: req.body.estado,
     pais: req.body.pais,
