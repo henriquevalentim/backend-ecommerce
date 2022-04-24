@@ -64,53 +64,53 @@ exports.findAll = (req, res) => {
     });
 };
 
-// exports.update = (req, res) => {
-//   const id = req.params.id;
+exports.update = (req, res) => {
+  const id = req.params.id;
 
-//   Product.update(req.body, {
-//     where: { id: id },
-//   })
-//     .then((num) => {
-//       if (num == 1) {
-//         res.send({
-//           message: "O produto foi atualizado com sucesso",
-//         });
-//       } else {
-//         res.send({
-//           message: `O produto com o id = ${id} não foi atualizado com sucesso`,
-//         });
-//       }
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message: "Error updating Tutorial with id=" + id,
-//       });
-//     });
-// };
+  Funcionario.update(req.body, {
+    where: { id: id },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "O funcionario foi atualizado com sucesso",
+        });
+      } else {
+        res.send({
+          message: `O funcionario com o id = ${id} não foi atualizado com sucesso`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error updating Tutorial with id=" + id,
+      });
+    });
+};
 
-// exports.delete = (req, res) => {
-//   const id = req.params.id;
+exports.delete = (req, res) => {
+  const id = req.params.id;
 
-//   Product.destroy({
-//     where: { id: id },
-//   })
-//     .then((num) => {
-//       if (num == 1) {
-//         res.send({
-//           message: "O produto foi excluido com sucesso!",
-//         });
-//       } else {
-//         res.send({
-//           message: `O produto com o id=${id} não foi apagado com sucesso!`,
-//         });
-//       }
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message: "Could not delete Tutorial with id=" + id,
-//       });
-//     });
-// };
+  Funcionario.destroy({
+    where: { id: id },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "O funcionario foi excluido com sucesso!",
+        });
+      } else {
+        res.send({
+          message: `O funcionario com o id=${id} não foi apagado com sucesso!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Could not delete Tutorial with id=" + id,
+      });
+    });
+};
 
 // exports.findOne = (req, res) => {
 //   const id = req.params.id;

@@ -5,8 +5,9 @@ module.exports = (app) => {
 
   router.post("/", funcionarios.create);
   router.get("/", funcionarios.findAll);
-  // router.delete("/:id", products.delete);
-  // router.put("/:id", products.update);
+  router.delete("/:id", funcionarios.delete);
+  router.put("/:id", funcionarios.update);
+
   // router.get("/:id", products.findOne);
 
   // // Retrieve all published Tutorials
