@@ -17,7 +17,8 @@ app.use(express.urlencoded({ extended: true, limit: "20mb" }));
 const db = require("./src/models");
 db.sequelize.sync();
 
-require("./src/routes/funcionario.routes")(app);
+require("./src/routes/produto.routes")(app);
+require("./src/routes/usuario.routes")(app);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

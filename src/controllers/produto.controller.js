@@ -1,20 +1,15 @@
 const db = require("../models");
-const Funcionario = db.funcionarios;
+const Produtos = db.produtos;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
   if (
-    !req.body.primeiroNome ||
-    !req.body.ultimoNome ||
-    !req.body.salario ||
-    !req.body.cargo ||
-    !req.body.setor ||
-    !req.body.logradouro ||
-    !req.body.numeroCasa ||
-    !req.body.cidade ||
-    !req.body.estado ||
-    !req.body.pais ||
-    !req.body.cep
+    !req.body.nome ||
+    !req.body.preco ||
+    !req.body.descricaoCurta ||
+    !req.body.descricaoLonga ||
+    !req.body.quantidade ||
+    !req.body.url_foto
   ) {
     res.status(400).send({
       message: "Preencha todos os dados!",
@@ -22,21 +17,16 @@ exports.create = (req, res) => {
     return;
   }
 
-  const funcionario = {
-    primeiroNome: req.body.primeiroNome,
-    ultimoNome: req.body.ultimoNome,
-    salario: req.body.salario,
-    cargo: req.body.cargo,
-    setor: req.body.setor,
-    logradouro: req.body.logradouro,
-    numeroCasa: req.body.numeroCasa,
-    cep: req.body.cep,
-    cidade: req.body.cidade,
-    estado: req.body.estado,
-    pais: req.body.pais,
+  const produto = {
+    nome: req.body.nome,
+    preco: req.body.preco,
+    descricaoCurta: req.body.descricaoCurta,
+    descricaoLonga: req.body.descricaoLonga,
+    quantidade: req.body.quantidade,
+    url_foto: req.body.url_foto,
   };
 
-  Funcionario.create(funcionario)
+  Produtos.create(produto)
     .then((data) => {
       res.send(data);
     })
@@ -49,10 +39,10 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  const name = req.query.name;
-  var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
+  const nome = req.query.nome;
+  var condition = nome ? { name: { [Op.like]: `%${nome}%` } } : null;
 
-  Funcionario.findAll({ where: condition })
+  Produtos.findAll({ where: condition })
     .then((data) => {
       res.send(data);
     })

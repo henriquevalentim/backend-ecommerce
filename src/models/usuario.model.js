@@ -1,32 +1,36 @@
 module.exports = (sequelize, Sequelize) => {
-  const Funcionario = sequelize.define("funcionario", {
+  const Usuarios = sequelize.define("usuario", {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       allowNull: false,
       primaryKey: true,
     },
-    primeiroNome: {
+    nome: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    ultimoNome: {
+    email: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    salario: {
-      type: Sequelize.DOUBLE,
-      allowNull: false,
-    },
-    cargo: {
+    senha: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    setor: {
+    dataNascimento: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
+    cpf: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    logradouro: {
+    telefone: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    cep: {
       type: Sequelize.STRING,
       allowNull: false,
     },
@@ -34,7 +38,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    cep: {
+    logradouro: {
       type: Sequelize.STRING,
       allowNull: false,
     },
@@ -46,11 +50,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    pais: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
   });
 
-  return Funcionario;
+  return Usuarios;
 };
